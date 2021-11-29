@@ -1,17 +1,19 @@
 <template>
   <div >
+  <h1 style="position: relative;left: 500px;">计量之眼-仪表远程读数识别系统</h1>
     <div class="show_all">
+
       <div class="show" >
-      <span>仪表画面</span>
+      <span>被检仪表画面</span>
       <img :src="img" style="width: 500px;height: 400px;">
     </div>
     <div class="show_pc" >
-      <span>PC画面</span>
+      <span>检测软件界面</span>
       <img :src="img_pc" style="width: 500px;height: 400px;">
     </div>
     </div>
     <div class="btn">
-      <div style="width: 100%;margin-bottom: 10px;">指示灯的颜色为：{{led}} </div>
+      <div style="width: 100%;margin-bottom: 10px;">状态指示灯检测结果：{{led}} </div>
       <a-button type="primary" @click="start" size="large">启动</a-button>
       <a-button type="primary" @click="stop" size="large">停止</a-button>
 
@@ -59,12 +61,12 @@ export default {
             ModalText: 'Content of the modal',
             visible: false,
             confirmLoading: false,
-            img : "",
+            img :require("../assets/R-C.png"),
             isClose:false,//是否关闭摄像头
             isopencamera:false,//是否打开摄像头
             selX:0,
             selY:0,
-            img_pc:'',
+            img_pc:require("../assets/dsjj.jpg"),
           }
       },
   methods: {
