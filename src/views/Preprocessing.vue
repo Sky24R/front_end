@@ -82,16 +82,14 @@ export default {
             //console.log('response');
 
             //console.log(response);
-            var msg = response.data;
-            console.log('msg');
-            console.log(msg);
+            var msg = response.data
             // 坑二：这里直接按类型解析，若再通过 JSON.stringify(msg) 转，会得到带双引号的字串
             that.img = "data:image/jpeg;base64," + msg['img']
             that.img_pc = "data:image/jpeg;base64," + msg['img_pc']
             that.led = msg['cled']
 
             if(!that.isClose){
-              //console.log('msg');
+              console.log('msg');
               that.getImg()
             }
 
@@ -105,16 +103,10 @@ export default {
           var that = this;
           // 对应 Python 提供的接口，这里的地址填写下面服务器运行的地址，本地则为127.0.0.1，外网则为 your_ip_address
           const path = '/getMsg';
-          that.isopencamera = true
-          if(that.isopencamera){
-            console.log('打开摄像头')
+          console.log('打开摄像头')
+          that.getImg()
+          that.change()
 
-            that.getImg()
-          }
-          that.isopencamera = false
-          console.log('关闭摄像头')
-
-          console.log(that.isopencamera )
         },
         change(){
           var that = this;
@@ -134,9 +126,6 @@ export default {
             console.log('出错了');
             console.log(error)
 	        })
-          setInterval(that.change,1000) //此处逻辑待改进
-          console.log('isClose')
-          console.log(that.isClose)
          },
         showModal() {
           this.visible = true;
