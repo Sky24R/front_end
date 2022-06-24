@@ -1,42 +1,57 @@
 <template>
-  <div >
+    <a-layout>
+    <a-layout-sider
+      breakpoint="lg"
+      collapsed-width="0"
+    >
+      <div class="logo" />
+      <a-menu theme="dark" mode="inline" style="font-size: 20px;text-align: center">
+        <a-menu-item key="1" @click="changeTo1()">
+          <user-outlined />
 
- <a-tabs tabPosition="left"   default-active-key="0" >
-        <a-tab-pane   key="0" tab="功能一" >
-
-  <div class="show_all">
-
-    <div class="show" >
-      <img :src="img" style="width: 500px;height: 400px;">
-       <span>被检仪表画面</span>
-    </div>
-
-   <div class="show_line" >
-      <img src="../assets/connect.png" style="width: 550px;height: 200px; margin-left: 100px;">
-    </div>
+          <span class="nav-text" >监测界面</span>
+        </a-menu-item>
+        <a-menu-item key="2" @click="changeTo2()">
+          <user-outlined />
+          <span class="nav-text">异常查询</span>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
 
 
-    <div class="show_pc" >
-      <img :src="img_pc" style="width: 500px;height: 400px;">
+    <a-layout v-if="changePage">
+      <!-- 标题 -->
+      <a-layout-header :style="{ background: '#fff', padding: 200  }" >
+           <h1  class="title"> 电磁兼容自动化测试 </h1>
+      </a-layout-header>
+
+      <a-layout-content :style="{ margin: '24px 16px 0' }">
+      <div :style="{ padding: '24px', background: '#fff', minHeight: '360px'}">
+        <div class="show_all">
+
+        <div class="show" >
+          <img :src="img" style="width: 400px;height: 400px;">
+          <span>被检仪表画面</span>
+        </div>
+
+        <div class="show_pc" >
+          <img :src="img_pc" style="width: 400px;height: 400px;">
         <span>检测软件界面</span>
-    </div>
-    
+        </div>
 
-    </div>
-  
-    <div class="contain">
-      <div  class="txt1" >
+       </div>
+        <div class="contain">
+          <div  class="txt1" >
           状态指示灯检测结果：{{led}}
       </div>
-      
-      <div class="btn"> 
+
+          <div class="btn">
        <a-button type="primary" @click="start" size="large">启动</a-button>
       <a-button type="primary" @click="stop" size="large">停止</a-button>
       <a-button type="primary" @click="showModal" size="large"> 手动选框 </a-button>
-        
+
       </div>
 
-  
       <a-modal
       title="手动选框"
       :visible="visible"
@@ -50,7 +65,7 @@
            <img :src="img" @click="select($event)">
         </div>
 
-        <template slot="footer">
+        <template slot="footer" >
 
           <a-button type="primary" @click="handleCancel">取消</a-button>
           <a-button type="primary" @click="handleOk">确定</a-button>
@@ -59,23 +74,19 @@
       </a-modal>
 
     </div>
-          </a-tab-pane>
+      </div>
 
-          <a-tab-pane key="1" tab="功能二" >
-            <Show></Show>
-          </a-tab-pane>
+      </a-layout-content>
 
-          <a-tab-pane key="2" tab="功能三" >
-          </a-tab-pane>
 
-          <a-tab-pane key="3" tab="功能四" >          
-          </a-tab-pane>
-
- </a-tabs>
-
-  
-
-  </div>
+      <a-layout-footer style="text-align: center">
+        中国科学技术大学302实验室
+      </a-layout-footer>
+    </a-layout>
+      <a-layout v-if="!changePage">
+        <show></show>>
+    </a-layout>
+  </a-layout>
 
 </template>
 
@@ -99,9 +110,16 @@ export default {
             selX: 0,
             selY: 0,
             img_pc: require("../assets/dsjj.jpg"),
+            changePage:true,
         };
     },
     methods: {
+       changeTo1(){
+         this.changePage=true;
+       },
+      changeTo2(){
+         this.changePage=false;
+       },
         getImg() {
             var that = this;
             // 对应 Python 提供的接口，这里的地址填写下面服务器运行的地址，本地则为127.0.0.1，外网则为 your_ip_address
@@ -190,11 +208,22 @@ export default {
 </script>
 
 <style scoped>
+/deep/.ant-tabs .ant-tabs-left-bar .ant-tabs-tab{
+  width: 200px;
+  text-align: center;
+  height: 50px;
+  font-size: 20px;
+
+}
+/deep/.ant-tabs .ant-tabs-left-content, .ant-tabs .ant-tabs-right-content{
+  background-color: white;
+}
+
 .show_all{
-  
+
   position:relative;
   width: 95%;
-  height:100%;
+  height:500px;
   font-weight: bold;
   font-size: 20px;
   align-content: center;
@@ -203,17 +232,16 @@ export default {
   /* left:10%; */
   /* top:80px; */
   border: 2px black solid;
-  min-width: 1200px;
+  min-width: 1100px;
   display: inline-block;
 }
 .show{
-  margin-left: 5%;
-  width: 200px;
-  height: 500px;
+
+  width: 400px;
+  height: 400px;
   float: left;
-  /* //border: 1px red solid; */
+  //border: 1px red solid;
   margin-top: 50px;
-  min-width: 450px;
 
 }
 .show_line
@@ -226,10 +254,10 @@ export default {
 }
 .show_pc{
   margin-right: 5%;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   float: right;
-  /* //border: 1px red solid; */
+  //border: 1px red solid;
     margin-top: 50px;
   min-width: 450px;
 
@@ -251,16 +279,18 @@ export default {
     background-color:rgb(65, 64, 71);
     width: 95%;
     height: 80px;
+    width: 1100px;
 }
 
 .txt1
 {
-   margin-top: 20px; 
-   margin-left: 50px; 
+   margin-top: 20px;
+   margin-left: 50px;
    color: aliceblue;
-   font-size:20px;  
+   font-size:20px;
    float: left;
    font-weight: 500;
+
 }
 
 .btn{
@@ -269,10 +299,17 @@ export default {
   font-size: 20px;
   text-align:right;
   float: right;
-  margin-right: 50px; 
-  margin-top: 20px; 
+  margin-right: 50px;
+  margin-top: 20px;
 }
 
+.title
+{
+      color:#000000;
+      text-align: center;
+      font-size:45px;
+      font-weight: 600;
 
+}
 
 </style>

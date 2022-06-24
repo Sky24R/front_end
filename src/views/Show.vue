@@ -1,5 +1,4 @@
 <template>
-
   <a-layout>
     <a-layout-header>Header</a-layout-header>
 
@@ -28,28 +27,32 @@
 
       <!-- ----------------------------------------------------------------------------------------- -->
         <!-- 图片 -->
-        <a-layout-content>
-              <a-row>
-                  <a-col :span="7">      
-                  </a-col>
-                  <a-col :span="10">
-                      <img id = "show_image" style="margin-top:40px ;" :src="Pic_url" width=800px height=600px  > 
-                  </a-col>
-                  <a-col :span="7">  
-                  </a-col>
-              </a-row>
+        <a-layout-content style="background-color: white">
+          <div style="text-align: center;">
+            <img id = "show_image" style="" :src="Pic_url" width=500px height=400px  >
+          </div>
         </a-layout-content>
 
-     <h1 id="pic_show_name"  style="margin-left:38%  ;align-content: center; ">2021-11-29/2021-11-29-19-01-36_1.jpg</h1>
 
 
+    <a-layout-content style="background-color: white">
+          <div style="text-align: center;">
+            <h1 id="pic_show_name"  style="align-content: center;">2021-11-29/2021-11-29-19-01-36_1.jpg</h1>
+          </div>
+    </a-layout-content>
+
+    <a-layout-content style="background-color: white">
+          <div style="text-align: center;">
+            <a-button type="primary"   size="large" @click="pre_button" style="margin-right: 40px;">前一个</a-button>
+            <a-button type="primary" size="large" @click="next_button" style=" " >后一个</a-button>
+          </div>
+    </a-layout-content>
   <!-- ----------------------------------------------------------------------------------------- -->
       <!-- 下面按钮 -->
-    <a-layout-footer>
-        <a-button type="primary"   size="large" @click="pre_button" style="margin-left:800px">前一个</a-button> 
-        <a-button type="primary" size="large" @click="next_button" style=" margin-left:100px" >后一个</a-button>
-    </a-layout-footer>
 
+    <a-layout-footer style="text-align: center;background-color: white">
+        中国科学技术大学302实验室
+    </a-layout-footer>
 
 
   </a-layout>
@@ -78,7 +81,7 @@ export default {
   methods:{
 
    moment,
- 
+
     onChange (value, dateString) {
       console.log('Selected Time: ', value)
       console.log('Formatted Selected Time: ', dateString)
@@ -120,8 +123,8 @@ export default {
 
             h1.innerText = this.$data.pic_names[this.$data.current_index]
           }
-    
-          
+
+
 
 
       },
@@ -162,9 +165,9 @@ export default {
 
 
         // image.src =require("../assets/img/2021-11-29/2021-11-29-19-01-36_2.jpg");
-  
+
           console.log(`../assets/img/${data_string}`)
-            
+
           this.$data.pic_names= [];
           const files = require.context(`../assets/img`, true,/\.jpg$/);
           files.keys().forEach(path=> {
@@ -186,7 +189,7 @@ export default {
                     break;
                   }
               }
-              
+
              if(i== this.$data.pic_names.length)
               {
                   this.$data.current_index = -1;
@@ -199,7 +202,7 @@ export default {
                   image.src =require(`../assets/img/`+this.$data.pic_names[this.$data.current_index]);
                   h1.innerText = this.$data.pic_names[this.$data.current_index]
               }
-          
+
           }
           else
           {
@@ -227,10 +230,10 @@ export default {
                   h1.innerText = this.$data.pic_names[this.$data.current_index]
               }
           }
-     
+
   },
-  
-  
+
+
   }
 }
 
