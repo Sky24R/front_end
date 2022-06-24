@@ -46,7 +46,7 @@
       </div>
 
           <div class="btn">
-       <a-button type="primary" @click="start" size="large">启动</a-button>
+       <a-button type="primary" @click="start" size="large">{{ bmsg }}</a-button>
       <a-button type="primary" @click="stop" size="large">停止</a-button>
       <a-button type="primary" @click="showModal" size="large"> 手动选框 </a-button>
 
@@ -100,6 +100,7 @@ export default {
     name: "preprocessing",
     data: function () {
         return {
+            bmsg: '预览',
             led: "",
             ModalText: "Content of the modal",
             visible: false,
@@ -122,35 +123,42 @@ export default {
        },
         getImg() {
             var that = this;
-            // 对应 Python 提供的接口，这里的地址填写下面服务器运行的地址，本地则为127.0.0.1，外网则为 your_ip_address
-            const path = "/getMsg";
-            console.log("发起请求");
-            axios.get(path).then(function (response) {
-                // 这里服务器返回的 response 为一个 json object，可通过如下方法需要转成 json 字符串
-                // 可以直接通过 response.data 取key-value
-                // 坑一：这里不能直接使用 this 指针，不然找不到对象
-                //console.log('response');
-                //console.log(response);
-                var msg = response.data;
-                // 坑二：这里直接按类型解析，若再通过 JSON.stringify(msg) 转，会得到带双引号的字串
-                that.img = "data:image/jpeg;base64," + msg["img"];
-                that.img_pc = "data:image/jpeg;base64," + msg["img_pc"];
-                that.led = msg["cled"];
-                if (!that.isClose) {
-                    console.log("msg");
-                    that.getImg();
-                }
-            }).catch(function (error) {
-                alert("Error " + error);
-            });
+          // 对应 Python 提供的接口，这里的地址填写下面服务器运行的地址，本地则为127.0.0.1，外网则为 your_ip_address
+          const path = '/getMsg';
+          console.log('发起请求')
+          axios.get(path).then(function (response) {
+            // 这里服务器返回的 response 为一个 json object，可通过如下方法需要转成 json 字符串
+            // 可以直接通过 response.data 取key-value
+            // 坑一：这里不能直接使用 this 指针，不然找不到对象
+            //console.log('response');
+
+            //console.log(response);
+            var msg = response.data
+            // 坑二：这里直接按类型解析，若再通过 JSON.stringify(msg) 转，会得到带双引号的字串
+            that.img = "data:image/jpeg;base64," + msg['img']
+            that.img_pc = "data:image/jpeg;base64," + msg['img_pc']
+            that.led = msg['cled']
+
+            if(!that.isClose){
+              console.log('msg');
+              that.getImg()
+            }
+
+
+          }).catch(function (error) {
+            alert('Error ' + error);
+          });
+
         },
         start() {
-            var that = this;
-            // 对应 Python 提供的接口，这里的地址填写下面服务器运行的地址，本地则为127.0.0.1，外网则为 your_ip_address
-            const path = "/getMsg";
-            console.log("打开摄像头");
-            that.getImg();
-            that.change();
+          var that = this;
+          if(!that.flag){that.bmsg = '启动'} else{that.bmsg = '已启动'}
+          const path = '/getMsg';
+          console.log('打开预览摄像头')
+          if(that.flag) that.preTosta()
+          that.getImg()
+          that.change()
+          that.flag = true
         },
         change() {
             var that = this;
@@ -158,6 +166,8 @@ export default {
         },
         stop() {
             var that = this;
+            that.flag = false
+            that.bmsg = '预览'
             // 对应 Python 提供的接口，这里的地址填写下面服务器运行的地址，本地则为127.0.0.1，外网则为 your_ip_address
             var data = { "close": true };
             that.isClose = true;
