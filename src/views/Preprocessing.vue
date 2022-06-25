@@ -44,7 +44,6 @@
           <div  class="txt1" >
           状态指示灯检测结果：{{led}}
       </div>
-      //bmsg为按键上显示内容
           <div class="btn">
        <a-button type="primary" @click="start" size="large">{{ bmsg }}</a-button>
       <a-button type="primary" @click="stop" size="large">停止</a-button>
