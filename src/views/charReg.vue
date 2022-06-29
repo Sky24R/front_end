@@ -1,5 +1,5 @@
 <template>
-  <a-layout>
+  <a-layout >
     <a-layout-sider
       breakpoint="lg"
       collapsed-width="0"
@@ -15,13 +15,13 @@
     </a-layout-sider>
 
 
-    <a-layout>
+    <a-layout >
       <!-- 标题 -->
       <a-layout-header :style="{ background: '#fff', padding: 200  }" >
            <h1  class="title"> OCR (光学字符识别) </h1>
       </a-layout-header>
 
-      <a-layout-content :style="{ margin: '24px 16px 0' }">
+      <a-layout-content :style="{ margin: '0px 10px 0' }">
       <div :style="{ padding: '24px', background: '#fff', minHeight: '360px'}">
         <div class="contain">
         <div class="left">
@@ -62,8 +62,8 @@
       </a-layout-content>
 
     <!-- 提示 -->
-     <a-layout-content :style="{ margin: '24px 16px 0' }">
-      <div :style="{ padding: '30px', background: '#fff', minHeight: '100px' }">
+     <a-layout-content :style="{ margin: '10px 16px 0' }">
+      <div :style="{ padding: '30px', minHeight: '100px' }">
       <a-steps :current="0">
           <a-step>
             <!-- <span slot="title">Finished</span> -->
@@ -77,7 +77,7 @@
       </a-steps>
       </div>
     </a-layout-content>
-      <a-layout-footer style="text-align: center">
+      <a-layout-footer style="text-align: center;">
         中国科学技术大学302实验室
       </a-layout-footer>
     </a-layout>
@@ -305,4 +305,6 @@ export default {
       font-weight: 600;
 
 }
+
+
 </style>

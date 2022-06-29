@@ -5,7 +5,7 @@
       collapsed-width="0"
     >
       <div class="logo" />
-      <a-menu theme="dark" mode="inline" style="font-size: 20px;text-align: center">
+      <a-menu theme="dark" mode="inline" style="font-size: 20px;text-align: center;">
         <a-menu-item key="1" @click="changeTo1()">
           <user-outlined />
 
@@ -19,13 +19,13 @@
     </a-layout-sider>
 
 
-    <a-layout v-if="changePage">
+    <a-layout v-if="changePage" style="margin: 0px">
       <!-- 标题 -->
-      <a-layout-header :style="{ background: '#fff', padding: 200  }" >
+      <a-layout-header :style="{ background: '#fff', }" >
            <h1  class="title"> 电磁兼容自动化测试 </h1>
       </a-layout-header>
 
-      <a-layout-content :style="{ margin: '24px 16px 0' }">
+      <a-layout-content :style="{ margin: '0px 16px 0' }">
       <div :style="{ padding: '24px', background: '#fff', minHeight: '360px'}">
         <div class="show_all">
 

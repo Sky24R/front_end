@@ -5,7 +5,7 @@ import Preprocessing from '@/views/Preprocessing'
 import mainPage from "../views/mainPage";
 import charReg from "../views/charReg";
 import Home from "../views/Home"
-import Show from "../views/Show"
+// import Show from "../views/Show"
 
 Vue.use(Router)
 

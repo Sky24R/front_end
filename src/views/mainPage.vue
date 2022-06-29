@@ -1,6 +1,6 @@
 <template>
 <div>
- <a-tabs style="margin-left:50px " value = "large"   default-active-key="0" >
+ <a-tabs style="margin-left:5px;margin-top: 0px " value = "large"   default-active-key="0" >
 
           <a-tab-pane   key="0" tab="首页" >
            <Home></Home>
@@ -14,14 +14,14 @@
             <char-reg></char-reg>
           </a-tab-pane>
 
-          <!-- <a-tab-pane key="3" tab="场景三" >   
-            <Show></Show>
-          </a-tab-pane> -->
+          <a-tab-pane key="3" tab="风量仪自动化测试" >
+            <Index></Index>>
+          </a-tab-pane>
 
 
           <template #leftExtra>
             <a-button class="tabs-extra-demo-button">Left Extra Action</a-button>
-          </template> 
+          </template>
           <template #rightExtra>
           <a-button>Right Extra Action</a-button>
           </template>
@@ -34,11 +34,10 @@ import Home from "./Home"
 import charReg from "./charReg";
 import Preprocessing from "./Preprocessing";
 import CharReg from "./charReg";
-import Show from "./Show"
-
+import Index from "./Index";
 export default {
   name: "mainPage",
-  components: { Home, CharReg, Preprocessing, Show }
+  components: { Home, CharReg, Preprocessing,Index}
 }
 </script>
 
@@ -48,10 +47,12 @@ export default {
 <style scoped lang="less">
 .tabs-extra-demo-button {
   margin-left: 20px;
+
 }
 
 .ant-row-rtl .tabs-extra-demo-button {
   margin-right: 0;
   margin-left: 16px;
 }
+
 </style>
