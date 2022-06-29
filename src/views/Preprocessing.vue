@@ -30,12 +30,12 @@
         <div class="show_all">
 
         <div class="show" >
-          <img :src="img" style="width: 400px;height: 400px;">
+          <img :src="img" style="width: 500px;height: 400px;">
           <span>被检仪表画面</span>
         </div>
 
         <div class="show_pc" >
-          <img :src="img_pc" style="width: 400px;height: 400px;">
+          <img :src="img_pc" style="width: 500px;height: 400px;">
         <span>检测软件界面</span>
         </div>
 
@@ -246,7 +246,7 @@ export default {
 }
 .show{
 
-  width: 400px;
+  width: 500px;
   height: 400px;
   float: left;
   //border: 1px red solid;
