@@ -111,6 +111,7 @@ export default {
             selY: 0,
             img_pc: require("../assets/dsjj.jpg"),
             changePage:true,
+            flag:false,
         };
     },
     methods: {
@@ -148,6 +149,12 @@ export default {
             alert('Error ' + error);
           });
 
+        },
+        preTosta(){
+          var that = this;
+          axios.post( '/getMsg', {'preflag':true}).then((response) => {
+            console.log(response)
+	        })
         },
         start() {
           var that = this;
@@ -212,7 +219,6 @@ export default {
             console.log(this.selY);
         }
     },
-    components: { Show }
 }
 </script>
 
