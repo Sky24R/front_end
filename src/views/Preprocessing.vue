@@ -61,7 +61,7 @@
 
       >
         <div >
-           <img :src="img" @click="select($event)">
+           <img :src="img" @click="select($event)" style="width: 500px;height: 400px;">
         </div>
 
         <template slot="footer" >
